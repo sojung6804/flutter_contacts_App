@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:contacts_service/contacts_service.dart';
 import 'contacts.dart';
 import 'Bsection.dart';
 
@@ -28,6 +29,8 @@ class _MyAppState extends State<MyApp> {
     var status = await Permission.contacts.status;
     if (status.isGranted) {
       print('허락됨');
+      var contacts = await ContactsService.getContacts();
+      // print(contacts[0].familyName);
     } else if (status.isDenied) {
       print('거절됨');
       Permission.contacts.request();
