@@ -24,11 +24,28 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   var tab = 0;
 
+  getPermission() async {
+    var status = await Permission.contacts.status;
+    if (status.isGranted) {
+      print('허락됨');
+    } else if (status.isDenied) {
+      print('거절됨');
+      Permission.contacts.request();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('연락처 앱'),
+        actions: [
+          IconButton(
+              onPressed: () {
+                getPermission();
+              },
+              icon: Icon(Icons.contacts))
+        ],
       ),
       body: [Contacts(), Bsection()][tab],
       bottomNavigationBar: BottomNavigationBar(
