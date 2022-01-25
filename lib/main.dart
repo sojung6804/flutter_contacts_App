@@ -20,7 +20,6 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   var tab = 0;
-  List contactsList = ['엄마', '이소의', '14서은렬', '엄마아들'];
 
   @override
   Widget build(BuildContext context) {
