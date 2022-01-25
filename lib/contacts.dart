@@ -28,11 +28,13 @@ class _ContactsState extends State<Contacts> {
         ),
         floatingActionButton: FloatingActionButton(
           child: Text('+'),
+          backgroundColor: Colors.purple,
           onPressed: () {
             showDialog(
                 context: context,
                 builder: (c) {
-                  return dialogD();
+                  return dialogD(
+                      addContacts: addContacts, contactsList: contactsList);
                 });
           },
         ),
@@ -41,19 +43,35 @@ class _ContactsState extends State<Contacts> {
   }
 }
 
-class dialogD extends StatefulWidget {
-  const dialogD({Key? key}) : super(key: key);
-  @override
-  _dialogDState createState() => _dialogDState();
-}
+class dialogD extends StatelessWidget {
+  dialogD({Key? key, this.addContacts, this.contactsList}) : super(key: key);
+  final addContacts;
+  final contactsList;
 
-class _dialogDState extends State<dialogD> {
+  var inputData = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Dialog(
       child: SizedBox(
         width: 300,
         height: 300,
+        child: Column(
+          children: [
+            TextField(controller: inputData),
+            TextButton(
+                onPressed: () {
+                  addContacts(inputData.text);
+                  Navigator.pop(context);
+                },
+                child: Text('완료')),
+            TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: Text('취소.'))
+          ],
+        ),
       ),
     );
   }

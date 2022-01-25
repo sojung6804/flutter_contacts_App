@@ -6,7 +6,10 @@ import 'Bsection.dart';
 void main() {
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
-    theme: ThemeData(),
+    theme: ThemeData(
+      primarySwatch: Colors.purple,
+      appBarTheme: AppBarTheme(color: Colors.purple),
+    ),
     home: MyApp(),
   ));
 }
@@ -29,6 +32,8 @@ class _MyAppState extends State<MyApp> {
       ),
       body: [Contacts(), Bsection()][tab],
       bottomNavigationBar: BottomNavigationBar(
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
         items: [
           BottomNavigationBarItem(
               icon: Icon(Icons.contacts), label: 'contacts'),
