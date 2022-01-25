@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:permission_handler/permission_handler.dart';
 
 class Contacts extends StatefulWidget {
   const Contacts({Key? key}) : super(key: key);
@@ -11,7 +10,9 @@ class _ContactsState extends State<Contacts> {
   List contactsList = ['엄마', '이소의', '14서은렬', '엄마아들'];
 
   addContacts(o) {
-    contactsList.add(o);
+    setState(() {
+      contactsList.add(o);
+    });
   }
 
   @override
