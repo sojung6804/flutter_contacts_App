@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:contacts_service/contacts_service.dart';
 
 class Contacts extends StatefulWidget {
   const Contacts({Key? key}) : super(key: key);
@@ -51,6 +52,8 @@ class dialogD extends StatelessWidget {
   final contactsList;
 
   var inputData = TextEditingController();
+  var inputData2 = TextEditingController();
+  var newPerson = new Contact();
 
   @override
   Widget build(BuildContext context) {
@@ -61,10 +64,14 @@ class dialogD extends StatelessWidget {
         child: Column(
           children: [
             TextField(controller: inputData),
+            TextField(controller: inputData2),
             TextButton(
                 onPressed: () {
                   addContacts(inputData.text);
                   Navigator.pop(context);
+                  newPerson.familyName = inputData.text;
+                  newPerson.displayName = inputData2.text;
+                  ContactsService.addContact(newPerson);
                 },
                 child: Text('완료')),
             TextButton(
